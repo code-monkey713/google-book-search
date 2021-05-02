@@ -1,14 +1,14 @@
 {
   "name": "google-books-search",
   "version": "1.0.0",
-  "description": "Google Books Search",
+  "description": "This is a full stack MERN application that will allow users to searc Google Books using their API.",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "seed": "node scripts/seedDB.js",
+    "seed": "node data/seedData.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
@@ -22,8 +22,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
-    "express": "^4.16.3",
+    "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "mongoose": "^5.3.16"
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7"
   }
 }
