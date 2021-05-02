@@ -21,7 +21,7 @@ export const Jumbotron = () => {
     <div className={classes.root}>
       <Grid item xs={12}>
         <Paper className={classes.paper}>
-          <div className="container jumbo-wrap">
+          <div className="jumbo-wrap">
             <Typography variant="h3" component="h2">
               {'(React) Google Books Search'}
             </Typography>
