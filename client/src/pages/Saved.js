@@ -1,4 +1,4 @@
-export const Save = ()=> {
+export const Saved = ()=> {
   return (
     <div style={{ padding: 20 }}>
       <h2>Saved View</h2>

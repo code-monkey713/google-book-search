@@ -1,6 +1,6 @@
 import './App.css';
 import { Main } from './layouts/Main';
-import { Save, Search } from './pages';
+import { Saved, Search } from './pages';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -8,8 +8,8 @@ function App() {
     <Router>
       <Routes>
         <Route element={<Main />}>
-          <Route path="/" element={<Save />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/" element={<Search />} />
+          <Route path="/saved" element={<Saved />} />
         </Route>
       </Routes>
     </Router>
