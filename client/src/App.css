@@ -35,3 +35,7 @@ code {
   filter: alpha(opacity = 60);
 }
 
+.saved-wrap {
+  padding: 20px;
+  margin-bottom: 35px;
+}
