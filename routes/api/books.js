@@ -7,6 +7,12 @@ router.get('/', (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+router.get('/:id', (req, res) => {
+  db.Book.findById(req.body.id)
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+});
+
 router.post('/', (req, res) => {
   db.Book.create(req.body)
     .then((dbModel) => res.json(dbModel))
