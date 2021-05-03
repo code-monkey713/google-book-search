@@ -1,4 +1,5 @@
 {
+  "homepage":"https://google-book-picks.herokuapp.com/",
   "name": "react-google-books",
   "version": "0.1.0",
   "private": true,
