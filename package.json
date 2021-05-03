@@ -1,11 +1,11 @@
 {
   "name": "google-books-search",
   "version": "1.0.0",
-  "description": "This is a full stack MERN application that will allow users to searc Google Books using their API.",
+  "description": "This is a full stack MERN application that will allow users to search Google Books using an API.",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
+    "start:prod": "npm run seed && node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "seed": "node data/seedData.js",
