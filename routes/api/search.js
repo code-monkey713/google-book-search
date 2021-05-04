@@ -1,8 +1,8 @@
 const router = require('express').Router();
+const axios = require('axios');
 
 router.get('/'),
   (req, res) => {
-    const axios = require('axios');
     const searchQuery = req.query.title;
     const config = {
       method: 'get',

@@ -1,12 +1,18 @@
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import {
+  Grid,
+  Paper,
+  Card,
+  CardContent,
+  Typography,
+  CardActions,
+  CardActionArea,
+  CardMedia,
+  TextField,
+  Button,
+} from '@material-ui/core/';
+import API from '../utils/API';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +41,14 @@ const useStyles = makeStyles((theme) => ({
 export const BookSearch = (props) => {
   const classes = useStyles();
 
-  // const [books, setBooks] = useState([]);
-  // const [search, setSearch] = useState("");
+  const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const searchBooks = (title) => {
+    API.searchBook(title)
+      .then((res) => setBooks(res.data.items))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className={classes.root}>
@@ -51,18 +63,18 @@ export const BookSearch = (props) => {
             <CardActions>
               <TextField
                 id="outlined-search"
-                label="Enter book here"
+                label="Enter book title here"
                 type="search"
                 variant="outlined"
                 fullWidth
                 className={classes.inputColor}
-                // onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </CardActions>
             <CardActions>
               <Button
-                // onClick={() => searchBooks(search)}
-                onClick={console.log('search button was pressed')}
+                onClick={() => searchBooks(search)}
+                // onClick={console.log('search button was pressed')}
                 variant="contained"
                 color="secondary"
               >
@@ -75,7 +87,29 @@ export const BookSearch = (props) => {
           <p className="grayout">Search results will populate here!</p>
         </div>
         <Paper className={classes.paper}>
-          Function to map all the search result goes here!
+          {/* Function to map all the search result goes here! */}
+          {/* {books.map((book)=>( */}
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  book title
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  book authors
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  book description
+                </Typography>
+              </CardContent>
+              <CardMedia
+                className={classes.media}
+                image={'imagelink'}
+                title="API image"
+              />
+            </CardActionArea>
+          </Card>
+          {/* ))} */}
         </Paper>
       </Grid>
     </div>
