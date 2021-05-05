@@ -88,28 +88,29 @@ export const BookSearch = (props) => {
         </div>
         <Paper className={classes.paper}>
           {/* Function to map all the search result goes here! */}
-          {/* {books.map((book)=>( */}
+          {books.map((book)=>(
           <Card className={classes.card}>
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  book title
+                  {book.volumeInfo.title}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  book authors
+                  {book.volumeInfo.authors}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  book description
+                  {book.volumeInfo.description}
                 </Typography>
               </CardContent>
               <CardMedia
                 className={classes.media}
-                image={'imagelink'}
+                image={book.volumeInfo.imageLinks.smallThumbnail}
                 title="API image"
               />
             </CardActionArea>
+            Buttons for View and Save
           </Card>
-          {/* ))} */}
+          ))}
         </Paper>
       </Grid>
     </div>
