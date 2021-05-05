@@ -19,14 +19,15 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    margin: '10px 0px 0px 0px',
+    margin: '10px 0px 35px 0px',
     padding: theme.spacing(4),
     textAlign: 'left',
     color: theme.palette.text.secondary,
   },
   card: {
-    padding: '15px',
+    padding: '20px',
     background: '#e8eaf6',
+    margin: '10px 0px 0px 0px',
   },
   inputColor: {
     background: 'white',
@@ -38,6 +39,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const missingThumbnail = (picture) => {
+  let thumbNail = '';
+  if (picture) {
+    thumbNail = picture;
+    return thumbNail;
+  }
+  thumbNail = 'https://via.placeholder.com/100x140';
+  return thumbNail;
+};
+
 export const BookSearch = (props) => {
   const classes = useStyles();
 
@@ -48,16 +59,6 @@ export const BookSearch = (props) => {
     API.searchBook(title)
       .then((res) => setBooks(res.data.items))
       .catch((err) => console.log(err));
-  };
-
-  const missingThumbnail = (picture) => {
-    let thumbNail = '';
-    if (picture) {
-      thumbNail = picture;
-      return thumbNail;
-    }
-    thumbNail = 'https://via.placeholder.com/100x140';
-    return thumbNail;
   };
 
   const saveBook = (book) => {
@@ -88,7 +89,6 @@ export const BookSearch = (props) => {
             <CardActions>
               <Button
                 onClick={() => searchBooks(search)}
-                // onClick={console.log('search button was pressed')}
                 variant="contained"
                 color="secondary"
               >
@@ -139,21 +139,25 @@ export const BookSearch = (props) => {
                   title="API image"
                 />
               </CardActionArea>
-              <Button
-                href={book.volumeInfo.infoLink}
-                target="_blank"
-                size="small"
-                color="primary"
-              >
-                {props.viewBtn}
-              </Button>
-              <Button
-                onClick={() => saveBook(book)}
-                size="small"
-                color="primary"
-              >
-                {props.saveBtn}
-              </Button>
+              <div className="buttonContainer">
+                <Button
+                  href={book.volumeInfo.infoLink}
+                  target="_blank"
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                >
+                  {props.viewBtn}
+                </Button>
+                <Button
+                  onClick={() => saveBook(book)}
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                >
+                  {props.saveBtn}
+                </Button>
+              </div>
             </Card>
           ))}
         </Paper>
