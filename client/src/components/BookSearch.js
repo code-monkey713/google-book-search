@@ -50,6 +50,20 @@ export const BookSearch = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const missingThumbnail = (picture) => {
+    let thumbNail = '';
+    if (picture) {
+      thumbNail = picture;
+      return thumbNail;
+    }
+    thumbNail = 'https://via.placeholder.com/100x140';
+    return thumbNail;
+  };
+
+  const saveBook = (book) => {
+    console.log('function to save book clicked');
+  };
+
   return (
     <div className={classes.root}>
       <Grid item xs={12}>
@@ -88,28 +102,59 @@ export const BookSearch = (props) => {
         </div>
         <Paper className={classes.paper}>
           {/* Function to map all the search result goes here! */}
-          {books.map((book)=>(
-          <Card className={classes.card}>
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {book.volumeInfo.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {book.volumeInfo.authors}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {book.volumeInfo.description}
-                </Typography>
-              </CardContent>
-              <CardMedia
-                className={classes.media}
-                image={book.volumeInfo.imageLinks.smallThumbnail}
-                title="API image"
-              />
-            </CardActionArea>
-            Buttons for View and Save
-          </Card>
+          {books.map((book) => (
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {book.volumeInfo.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {book.volumeInfo.authors
+                      ? book.volumeInfo.authors[0]
+                      : 'No author Listed'}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {book.volumeInfo.description}
+                  </Typography>
+                </CardContent>
+                <CardMedia
+                  className={classes.media}
+                  image={
+                    book.volumeInfo.imageLinks.smallThumbnail
+                      ? book.volumeInfo.imageLinks.smallThumbnail
+                      : 'https://via.placeholder.com/100x140'
+                  }
+                  // image={missingThumbnail(
+                  //   book.volumeInfo.imageLinks.smallThumbnail
+                  // )}
+                  title="API image"
+                />
+              </CardActionArea>
+              <Button
+                href={book.volumeInfo.infoLink}
+                target="_blank"
+                size="small"
+                color="primary"
+              >
+                {props.viewBtn}
+              </Button>
+              <Button
+                onClick={() => saveBook(book)}
+                size="small"
+                color="primary"
+              >
+                {props.saveBtn}
+              </Button>
+            </Card>
           ))}
         </Paper>
       </Grid>
