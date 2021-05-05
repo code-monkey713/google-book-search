@@ -39,16 +39,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const missingThumbnail = (picture) => {
-  let thumbNail = '';
-  if (picture) {
-    thumbNail = picture;
-    return thumbNail;
-  }
-  thumbNail = 'https://via.placeholder.com/100x140';
-  return thumbNail;
-};
-
 export const BookSearch = (props) => {
   const classes = useStyles();
 
@@ -116,7 +106,7 @@ export const BookSearch = (props) => {
                   >
                     {book.volumeInfo.authors
                       ? book.volumeInfo.authors[0]
-                      : 'No author Listed'}
+                      : 'No Author Listed'}
                   </Typography>
                   <Typography
                     variant="body2"
@@ -129,13 +119,9 @@ export const BookSearch = (props) => {
                 <CardMedia
                   className={classes.media}
                   image={
-                    book.volumeInfo.imageLinks.smallThumbnail
-                      ? book.volumeInfo.imageLinks.smallThumbnail
-                      : 'https://via.placeholder.com/100x140'
+                    book.volumeInfo.imageLinks?.smallThumbnail ||
+                    'https://via.placeholder.com/100x140'
                   }
-                  // image={missingThumbnail(
-                  //   book.volumeInfo.imageLinks.smallThumbnail
-                  // )}
                   title="API image"
                 />
               </CardActionArea>
