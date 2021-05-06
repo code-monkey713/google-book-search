@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   card: {
-    padding: '20px',
+    padding: '15px',
     background: '#e8eaf6',
     margin: '10px 0px 0px 0px',
   },
@@ -52,9 +52,14 @@ export const BookSearch = (props) => {
   };
 
   const saveBook = (book) => {
+    let authors = '';
+    book.volumeInfo.authors
+      ? (authors = book.volumeInfo.authors[0])
+      : (authors = 'No Authors Listed');
+
     API.saveBook({
       title: book.volumeInfo.title,
-      authors: book.volumeInfo?.authors[0] || 'No Authors Listed',
+      authors: authors,
       description: book.volumeInfo.description,
       image:
         book.volumeInfo.imageLinks?.smallThumbnail ||

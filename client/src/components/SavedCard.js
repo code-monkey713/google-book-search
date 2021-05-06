@@ -26,8 +26,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     padding: '15px',
     background: '#e8eaf6',
+    margin: '10px 0px 0px 0px',
   },
   media: {
+    padding: '5px',
     width: '150px',
     height: '150px',
   },
@@ -42,14 +44,12 @@ export const SavedCard = (props) => {
   }, []);
 
   function loadBooks() {
-    // console.log('loadBooks function called');
     API.getBooks()
       .then((res) => setBooks(res.data))
       .catch((err) => console.log(err));
   }
 
   function deleteBook(id) {
-    // console.log('deleteBook function called with id: ', id);
     API.deleteBook(id)
       // add a modal to warn the book with 'title' has been deleted
       .then((res) => loadBooks())
@@ -96,6 +96,7 @@ export const SavedCard = (props) => {
                     target='_blank'
                     size='small'
                     color='primary'
+                    variant="outlined"
                   >
                     {props.btnView}
                   </Button>
@@ -103,6 +104,7 @@ export const SavedCard = (props) => {
                     onClick={() => deleteBook(book._id)}
                     size='small'
                     color='secondary'
+                    variant="outlined"
                   >
                     {props.btnDelete}
                   </Button>
