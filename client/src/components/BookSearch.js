@@ -52,7 +52,17 @@ export const BookSearch = (props) => {
   };
 
   const saveBook = (book) => {
-    console.log('function to save book clicked');
+    API.saveBook({
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo?.authors[0] || 'No Authors Listed',
+      description: book.volumeInfo.description,
+      image:
+        book.volumeInfo.imageLinks?.smallThumbnail ||
+        'https://via.placeholder.com/100x140',
+      link: book.volumeInfo.infoLink,
+    }).then(() => {
+      alert('Your book has been saved to the database!');
+    });
   };
 
   return (
