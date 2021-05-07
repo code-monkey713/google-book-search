@@ -58,6 +58,9 @@ GitHub profile: code-monkey713
 
 Email: tony.tran713@outlook.com
 
+My Portfolio with a link to this project: 
+https://code-monkey713.github.io/tony-react-portfolio/
+
 ## References
 
 https://material-ui.com/
